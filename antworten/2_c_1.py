@@ -30,11 +30,7 @@ sort2 = text2.sortBy(lambda x:x[0], ascending=True)
 
 original_text = sort1.collect()
 count_by_key = sort2.countByKey()
-#summe = sort2.reduceByKey(add).collect()
-aTuple =(0,0)
-#summe = sort2.aggregateByKey(aTuple, lambda a,b: (a[0] + b, a[1] + 1),lambda a,b: (a[0] + b[0], a[1] + b[1])).collect()
-#summe = sort2.map(lambda x,y : x[1] + y[1]).collect()
-#summe = sort2.groupByKey().mapValues(lambda x: sum(x)).collect()
+
 
 
 print("Manufacturer and Brands:")
@@ -44,4 +40,3 @@ for line in original_text:
 print("Number of Items of each Brand")
 print(count_by_key)
 
-#print(summe)

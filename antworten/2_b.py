@@ -19,15 +19,6 @@ def Func(lines):
 text = sc.textFile("supplier.tbl")
 text1 = text.map(Func)
 
-#zipped = text1.zipWithIndex()
-#positive = zipped.filter(lambda x:float(x)>0).keys()
 
 text2 = text1.filter(lambda x:float(x)>0).count()
 print(text2)
-
-#original_text = text2.collect()
-#print(original_text)
-
-#for line in original_text:
-#    print(line)
-

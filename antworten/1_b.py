@@ -33,18 +33,19 @@ text2 = text2.map(lambda x:(x, 1)).reduceByKey(lambda x,y:x+y).sortBy(lambda x:x
 
 original_text = text2.collect()
 
-
-#wordcount = text1.reduceByKey(operator.add)
-#sorted_wordcount = wordcount.sortBy(lambda x: x[1, False])
-#for word,count in sorted_wordcount.toLocalIterator():
-#    print(u"{} : {}".format(word, count))
-
 for line in original_text:
     print(line[0],"kommt",line[1], " mal vor")
 
 x = len(original_text)
 
 print("Gesamtzahl der vorkommenden unterschiedlichen Worte ist  ", x)
+
+#wordcount = text1.reduceByKey(operator.add)
+#sorted_wordcount = wordcount.sortBy(lambda x: x[1, False])
+#for word,count in sorted_wordcount.toLocalIterator():
+#    print(u"{} : {}".format(word, count))
+
+
 #wordcount  = sqlContext.read.format('com.databricks.spark.txt').options(header='False').load('informatic.txt')
 
 #wordcount.show()

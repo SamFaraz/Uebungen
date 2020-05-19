@@ -6,18 +6,18 @@ import pyspark.sql.functions
 from pyspark import SparkContext, SparkConf
 import pyspark
 
-conf = SparkConf().setAppName("supplier").setMaster("local[*]")
+conf = SparkConf().setAppName("partsupp").setMaster("local[*]")
 sc = SparkContext(conf = conf)
 
 def Func(lines):
       
     lines = lines.split("|") 
-    return  lines[1], lines[3]
+    return  lines[1], lines[0]
 
-text = sc.textFile("supplier.tbl")
-text1 = text.map(Func).collect()
+text = sc.textFile("partsupp.tbl")
+text1 = text.map(Func).sortBy(lambda x:x[0], ascending=True).countByKey()
 
-for line in text1:
-    print(line)
 
+
+print(text1)
 
