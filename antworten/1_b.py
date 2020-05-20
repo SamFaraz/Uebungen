@@ -1,12 +1,8 @@
-
-import operator
-from operator import add
-from pyspark.sql import SQLContext
-import pyspark.sql.types
-from pyspark.sql import Window
+from pyspark.sql import Window, SQLContext
 import pyspark.sql.functions
 from pyspark import SparkContext, SparkConf
 import pyspark
+
 
 conf = SparkConf().setAppName("1_b").setMaster("local[1]")
 sc = SparkContext(conf = conf)

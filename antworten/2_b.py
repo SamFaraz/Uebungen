@@ -1,9 +1,4 @@
-from pyspark.sql.dataframe import DataFrame
-import operator
-from operator import add
-from pyspark.sql import SQLContext
-from pyspark.sql.types import FloatType
-from pyspark.sql import Window
+from pyspark.sql import Window, SQLContext
 import pyspark.sql.functions
 from pyspark import SparkContext, SparkConf
 import pyspark
@@ -21,4 +16,5 @@ text1 = text.map(Func)
 
 
 text2 = text1.filter(lambda x:float(x)>0).count()
+print("The Number of Supplier with positive account balance:")
 print(text2)

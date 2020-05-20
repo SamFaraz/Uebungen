@@ -1,7 +1,4 @@
-from operator import add
-import operator
-from pyspark.sql import SQLContext
-from pyspark.sql import Window
+from pyspark.sql import Window, SQLContext
 import pyspark.sql.functions
 from pyspark import SparkContext, SparkConf
 import pyspark
@@ -17,7 +14,7 @@ def Func(lines):
 def Funcc(lines):
       
     lines = lines.split("|") 
-    return  lines[3],lines[7]
+    return  lines[3],float(lines[7])
 
 
 
@@ -27,6 +24,7 @@ text2 = text.map(Funcc)
 
 sort1 = text1.distinct().sortBy(lambda x:x[0], ascending=True).sortBy(lambda y:y[1], ascending = True)
 sort2 = text2.sortBy(lambda x:x[0], ascending=True)
+price = sort2.reduceByKey(lambda x,y: x+y).collect()
 
 original_text = sort1.collect()
 count_by_key = sort2.countByKey()
@@ -39,3 +37,6 @@ for line in original_text:
 
 print("Number of Items of each Brand")
 print(count_by_key)
+
+print("Total Sale Price of each Brand")
+print(price)

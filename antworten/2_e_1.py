@@ -1,10 +1,8 @@
-from operator import add
-import operator
-from pyspark.sql import SQLContext
-from pyspark.sql import Window
+from pyspark.sql import Window, SQLContext
 import pyspark.sql.functions
 from pyspark import SparkContext, SparkConf
 import pyspark
+
 
 conf = SparkConf().setAppName("partsupp").setMaster("local[*]")
 sc = SparkContext(conf = conf)
