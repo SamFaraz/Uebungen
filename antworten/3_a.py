@@ -39,8 +39,5 @@ df_sort.show()
 
 
 
-#df.withColumn("_6", df["account"].cast(FloatType())).drop("account").withColumnRenamed("_6", "account")
-
-
 
 
