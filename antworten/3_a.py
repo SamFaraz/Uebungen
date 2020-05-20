@@ -20,7 +20,7 @@ d1 = d0.map(lambda x: x.split('|'))
 df = sqlContext.createDataFrame(d1)
 
 
-df_sort= df.sortBy('_6',ascending=False)
+df_sort= df.orderBy('_6',ascending=False)
 
 df_sort.show(25, False)
 
