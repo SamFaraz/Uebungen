@@ -17,25 +17,25 @@ sqlContext = SQLContext(sc)
 d0 = sc.textFile('supplier.csv')
 
 d1 = d0.map(lambda x: x.split('|'))
+d2 = d1.map(lambda x: (int(x[0]), x[1], x[2], int(x[3]), x[4], float(x[5]), x[6] ))
 
 schema = StructType([
-        
-         StructField('S_SUPPKEY', StringType(), True),
+         
+         StructField('S_SUPPKEY', IntegerType(), True),
          StructField('S_NAME', StringType(), True),
          StructField('S_ADDRESS', StringType(), True),
-         StructField('S_NATIONKEY', StringType(), True),
+         StructField('S_NATIONKEY', IntegerType(), True),
          StructField('S_PHONE', StringType(), True),
-         StructField('S_ACCTBAL', StringType(), True),
-         StructField('S_COMMENT', StringType(), True),
-         StructField('Null', StringType(), True)
+         StructField('S_ACCTBAL', FloatType(), True),
+         StructField('S_COMMENT', StringType(), True)
          ])
 
-df = sqlContext.createDataFrame(d1, schema=schema)
-#df = sqlContext.createDataFrame(d1)
+df = sqlContext.createDataFrame(d2, schema=schema)
+
 
 df_sort= df.orderBy('S_ACCTBAL',ascending = True)
 
-df_sort.show()
+df_sort.show(25, False)
 
 
 
