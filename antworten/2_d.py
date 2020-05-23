@@ -1,8 +1,4 @@
-from pyspark.sql import Window, SQLContext
-import pyspark.sql.functions
 from pyspark import SparkContext, SparkConf
-import pyspark
-
 
 conf = SparkConf().setAppName("part").setMaster("local[*]")
 sc = SparkContext(conf = conf)
