@@ -1,10 +1,6 @@
 from pyspark.sql import SQLContext, SparkSession
-from pyspark.sql import Window, Row
-import pyspark.sql.functions
 from pyspark import SparkContext, SparkConf
-import pyspark
-import pyspark.sql.types
-from pyspark.sql.types import FloatType,DoubleType,StringType,IntegerType,StructField,StructType,DecimalType
+from pyspark.sql.types import *
 
 conf = SparkConf().setAppName("supplier").setMaster("local[*]")
 sc = SparkContext(conf = conf)

@@ -1,13 +1,6 @@
-from operator import add
-import operator
 from pyspark.sql import SQLContext, SparkSession
-from pyspark.sql import Window, Row
-from pyspark.sql.functions import rand
-import pyspark.sql.functions
 from pyspark import SparkContext, SparkConf
-import pyspark
-import pyspark.sql.types
-from pyspark.sql.types import FloatType,DoubleType,StringType,IntegerType,StructField,StructType,DecimalType
+from pyspark.sql.types import *
 
 conf = SparkConf().setAppName("supplier").setMaster("local[*]")
 sc = SparkContext(conf = conf)
@@ -35,7 +28,7 @@ df = sqlContext.createDataFrame(d2, schema=schema)
 
 df_sort= df.orderBy('S_ACCTBAL',ascending = True)
 
-df_sort.show(25, False)
+df_sort.select('S_NAME', 'S_ACCTBAL').show(25, False)
 
 
 

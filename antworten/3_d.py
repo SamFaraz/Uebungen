@@ -1,3 +1,5 @@
+
+from pyspark.sql.functions import col, size, udf
 from pyspark.sql import SQLContext, SparkSession
 from pyspark import SparkContext, SparkConf
 from pyspark.sql.types import *
@@ -27,25 +29,8 @@ schema = StructType([
          StructField('P_COMMENT', StringType(), True)
          ])
 
+size_ = udf(lambda xs: len(xs), IntegerType())
+
 df = sqlContext.createDataFrame(d2, schema=schema)
-
-Item_Brand = df.groupBy('P_MFGR','P_BRAND').count().orderBy('P_MFGR','P_BRAND')
-print("Manufacturer and Brands and Number of Items of each Brand")
-#Item_Brand.show(30, False)
-
-
-Total_Sales = df.groupby('P_BRAND').agg({'P_RETAILPRICE': 'sum'}).orderBy('P_BRAND')
-
-print("")
-#Total_Sales.show(30, False)
-print("")
-df_inner = Item_Brand.join(Total_Sales, on=['P_BRAND'], how='inner').orderBy('P_MFGR','P_BRAND')
-print("Manufacturer and Brands and Number of Items of each Brand and Total Sale Price of each Brand:")
-print("")
-df_inner.show(30, False)
-
-
-
-#MFG_Brand = df.dropDuplicates(['P_BRAND']).orderBy('P_MFGR','P_BRAND').select('P_MFGR','P_BRAND')
-#
-#MFG_Brand.show(50, False)
+df = df.select('P_NAME')
+df.where(size_(col('P_NAME')) == 3).describe().show()
