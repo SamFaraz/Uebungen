@@ -13,10 +13,14 @@ spark = SparkSession.builder \
 
 df = spark.read \
     .format("com.databricks.spark.xml") \
-    .option("rowTag","page") \
+    .option("rowTag","contributor") \
     .load("05_pages-meta-current.xml")
     
 
 
-df.show(n = 5 , truncate=True, vertical=False)
-df.printSchema()
+# df.show(n =20, truncate=True, vertical=False)
+# df.printSchema()
+
+df.groupBy("username").count().show(n = 3, truncate = False, vertical = True)
+
+# df.select("revision.contributor.ip").show(n = 30, truncate=True, vertical=False)

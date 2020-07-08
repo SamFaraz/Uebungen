@@ -22,4 +22,5 @@ df = spark.read \
 # df.printSchema()
 
 url = df.select("url") 
-url.groupby('url').agg({'url': 'count'}).show()
+# url.groupby('url').agg({'url': 'count'}).show()
+url.show(truncate=False)

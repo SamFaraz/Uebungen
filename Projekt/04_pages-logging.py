@@ -20,3 +20,6 @@ df = spark.read \
 
 df.show(n = 5 , truncate=True, vertical=False)
 df.printSchema()
+
+logtitle = df.groupby('logtitle').agg({'logtitle': 'count'})
+logtitle.show()
